@@ -8,28 +8,90 @@
         Title="MainWindow"
         WindowStartupLocation="CenterScreen"
         SizeToContent="WidthAndHeight"
+        AllowsTransparency="True"
+        Drop="Window_Drop"
+        AllowDrop="True"
+        WindowStyle="None"
+        Name="win"
         >
-    <Grid>
+    
+    <!--设置窗体为圆角，加上这个就点击不了最上面一排按钮了-->
+    <!--<WindowChrome.WindowChrome>
+        <WindowChrome CornerRadius="10"
+                      GlassFrameThickness="0"/>
+    </WindowChrome.WindowChrome>-->
+
+    <Window.Resources>
+        <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </Window.Resources>
+    
+    <!--设置快捷键-->
+    <Window.InputBindings>
+        <KeyBinding Key="F" Command="{Binding ToggleMediaStretchCommand}" />
+    </Window.InputBindings>
+
+    <Grid Name="container" MouseLeftButtonDown="DragWindow">
         <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+
+        <!--最上面的两层-->
+        <DockPanel Grid.Row="0" Height="26" Background="AliceBlue">
+            <!--显示正在播放的视频-->
+            <Label x:Name="media_palying" Content="xxx.mp4"/>
+            <WrapPanel HorizontalAlignment="Right" DockPanel.Dock="Right">
+                <!--右边的三个按钮-->
+                <Button x:Name="btn_minimize" Content="最小化" Click="Close_Click"></Button>
+                <Button x:Name="btn_maximize" Content="最大化" Click="Close_Click"></Button>
+                <Button x:Name="btn_close" Content="关闭" Click="Close_Click"></Button>
+            </WrapPanel>
+        </DockPanel>
+
+        <WrapPanel Grid.Row="1" HorizontalAlignment="Left" DockPanel.Dock="Left">
+            <Grid>
+                <Button x:Name="MediaButton" Content="媒体" Width="60" Height="20" Click="MediaButton_Click"/>
+                <Popup x:Name="MediaPopup" PlacementTarget="{Binding ElementName=MediaButton}" StaysOpen="False">
+                    <StackPanel>
+                        <Button Content="选择文件" Width="100" Height="20" Click="SelectFile_Click"/>
+                        <Button Content="选择文件夹" Width="100" Height="20" Click="SelectFolder_Click"/>
+                    </StackPanel>
+                </Popup>
+            </Grid>
+
+        </WrapPanel>
         
-        <!--媒体播放器-->
-        <MediaElement 
-                      x:Name="myPlayer"
-                      Width="1080"
-                      Height="624"
-                      Stretch="Uniform"
-                      LoadedBehavior="Manual"/>
+        
+        <!--媒体播放器主窗口-->
+        <MediaElement Grid.Row="2"
+              x:Name="myPlayer"
+              Width="1080"
+              Height="624"
+              LoadedBehavior="Manual"
+              MediaOpened="myPlayer_MediaOpened"
+              Stretch="{Binding MediaStretch}"
+              Visibility="{Binding IsFullScreen, Converter={StaticResource BoolToVisibilityConverter}}"
+              />
         
         <!--进度条-->
-        <StackPanel Grid.Row="1">
+        <StackPanel Grid.Row="3">
+            <!--进度条-->
+            <Slider x:Name="seekBar"
+                    Background="Transparent"
+                    Height="20"
+                    Value="{Binding MediaPosition, Mode=TwoWay}"
+                    ValueChanged="seekBar_ValueChanged"
+                    />
+
+            <!--提示有没有视频-->
             <Label Name="lblStatus"
-                   Content="Not playing..."
+                   Content="请选择播放视频"
                    HorizontalContentAlignment="Center"
                    Margin="5"/>
 
+            <!--底部按钮-->
             <WrapPanel HorizontalAlignment="Center">
                 <WrapPanel.Resources>
                     <Style TargetType="Button">

@@ -1,0 +1,14 @@
+﻿<Window x:Class="测试最大化.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:测试最大化"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        WindowStyle="None">
+    <WrapPanel>
+        <Button Margin="80" Content="最大" x:Name="a" Width="80" Height="30" Click="a_Click"/>
+        <Button Content="正常" x:Name="b" Width="80" Height="30" Click="b_Click"/>
+    </WrapPanel>
+</Window>
