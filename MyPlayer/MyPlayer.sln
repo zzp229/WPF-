@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyPlayer", "MyPlayer\MyPlayer.csproj", "{EDA3A8EB-0512-4002-A85B-626CF64F7B75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Version1", "MyPlayer\Version1.csproj", "{EDA3A8EB-0512-4002-A85B-626CF64F7B75}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Debug", "Debug", "{16F890A5-6C41-44B3-8ABC-C41EFB0E1A05}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "测试最大化", "测试最大化\测试最大化.csproj", "{2FC8D494-1FE6-4439-87FF-BC786991C82F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomPlayer", "测试最大化\CustomPlayer.csproj", "{2FC8D494-1FE6-4439-87FF-BC786991C82F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

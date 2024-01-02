@@ -53,7 +53,8 @@ namespace 测试最大化.ViewModels
             {
                 mediaSource = new Uri(openFileDialog.FileName, UriKind.RelativeOrAbsolute);
                 // 手动自动播放，因为设置了LoadBehavior
-                startMediaEvent?.Invoke();  // Action有时候比方法好用，要不然调用自己的方法需要静态的
+                startMediaEvent?.Invoke();  // Action有时候比方法好用，要不然调用自己的方法需要静态的，这里等同于到code_behind中调用一遍
+
             }
         }
 

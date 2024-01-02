@@ -20,7 +20,11 @@
 
 
 
-    <Grid x:Name="MainGrid" Margin="0" Background="Transparent" MouseLeftButtonDown="DragWindow">
+    <Grid x:Name="MainGrid" Margin="0" MouseLeftButtonDown="DragWindow">
+        <Grid.Background>
+            <ImageBrush ImageSource="/v2-3710676ca7a912350628d92cd848da91.png"/>
+        </Grid.Background>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="10*"/>
             <RowDefinition Height="70*"/>
@@ -53,7 +57,11 @@
         </Grid>
 
         <!--视频播放区域-->
-        <Border Grid.Row="1" x:Name="myBorder" Background="AntiqueWhite" Padding="0" MouseLeftButtonDown="NoDrag">
+        <Border Grid.Row="1" x:Name="myBorder" Padding="0" MouseLeftButtonDown="NoDrag">
+            <!--<Border.Background>
+                <ImageBrush ImageSource="/v2-3710676ca7a912350628d92cd848da91.png"/>
+            </Border.Background>-->
+
             <MediaElement Name="myMediaElement" Source="{Binding mediaSource}"
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                   LoadedBehavior="Manual" UnloadedBehavior="Manual"
