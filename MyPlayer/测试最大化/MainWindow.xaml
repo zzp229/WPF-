@@ -20,11 +20,11 @@
 
 
 
-    <Grid x:Name="MainGrid" Margin="0">
+    <Grid x:Name="MainGrid" Margin="0" Background="Transparent" MouseLeftButtonDown="DragWindow">
         <Grid.RowDefinitions>
             <RowDefinition Height="10*"/>
-            <RowDefinition Height="90*"/>
-            <RowDefinition Height="10*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -32,21 +32,50 @@
                 <RowDefinition Height="50*"/>
                 <RowDefinition Height="50*"/>
             </Grid.RowDefinitions>
-            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Content="测试"  Style="{StaticResource btnRightCornerStyle}" Visibility="{Binding BtnVisiable}" x:Name="test" Click="b_Click"/>
-                <Button Content="最大" Style="{StaticResource btnRightCornerStyle}" Visibility="{Binding BtnVisiable}" x:Name="a"  Click="a_Click"/>
-                <Button Content="关闭" Command="{Binding closeCommand}" Style="{StaticResource btnRightCornerStyle}" Visibility="{Binding BtnVisiable}" x:Name="b"/>
+            <WrapPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="测试"  Style="{StaticResource btnRightCornerStyle}" Visibility="{Binding BtnVisiable}" Click="b_Click"/>
+                <Button Content="最大" Style="{StaticResource btnRightCornerStyle}" Visibility="{Binding BtnVisiable}" Click="a_Click"/>
+                <Button Content="关闭" Command="{Binding closeCommand}" Style="{StaticResource btnRightCornerStyle}" Visibility="{Binding BtnVisiable}"/>
             </WrapPanel>
-            
+            <!--第二行-->
+            <WrapPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                <!--媒体下拉框-->
+                <Button Content="媒体" Command="{Binding popMediaIsOpenCmd}" Name="btnMedia"  Style="{StaticResource btnRightCornerStyle}" Visibility="{Binding BtnVisiable}"/>
+                <Popup Name="popMedia" IsOpen="{Binding popMediaIsOpen}" PlacementTarget="{Binding ElementName=btnMedia}" StaysOpen="False">
+                    <StackPanel>
+                        <Button Content="选择文件" Width="100" Height="20" />
+                        <Button Content="选择文件夹" Width="100" Height="20"/>
+                    </StackPanel>
+                </Popup>
+                <Button Content="播放" Style="{StaticResource btnRightCornerStyle}" Visibility="{Binding BtnVisiable}"   Click="a_Click"/>
+                <Button Content="音频" Command="{Binding closeCommand}" Style="{StaticResource btnRightCornerStyle}" Visibility="{Binding BtnVisiable}"/>
+            </WrapPanel>
         </Grid>
 
-        <Border Grid.Row="1" x:Name="myBorder" Background="AntiqueWhite" Padding="0">
+        <!--视频播放区域-->
+        <Border Grid.Row="1" x:Name="myBorder" Background="AntiqueWhite" Padding="0" MouseLeftButtonDown="NoDrag">
             <MediaElement Name="myMediaElement" Source="your_media_source_here"
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                   Margin="0"/>
         </Border>
 
 
-        <TextBlock Grid.Row="2" Background="AliceBlue"/>
+        <!--<TextBlock Grid.Row="2" Background="AliceBlue"/>-->
+        <Grid Grid.Row="2" Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="40*"/>
+            </Grid.RowDefinitions>
+            <Slider Grid.Row="0"></Slider>
+            <Label Grid.Row="1" Content="请选择视频······" HorizontalAlignment="Center" FontSize="10"/>
+            <WrapPanel Grid.Row="2" HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button Margin="5 5" Content="上一个视频"/>
+                <Button Command="{Binding pauseCommand}" Margin="5 5" Content="暂停"/>
+                <Button Command="{Binding startCommand}" Margin="5 5" Content="播放"/>
+                <Button Margin="5 5" Content="下一个视频"/>
+            </WrapPanel>
+        </Grid>
+        
     </Grid>
 </Window>
