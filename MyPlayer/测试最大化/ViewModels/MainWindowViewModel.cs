@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -21,7 +22,10 @@ namespace 测试最大化.ViewModels
             pauseCommand = new RelayCommand(pauseMethod, CanExecuteCloseCommand);
             startCommand = new RelayCommand(startMethod, CanExecuteCloseCommand);
             popMediaIsOpenCmd = new RelayCommand(popMediaIsOpenMethod, CanExecuteCloseCommand);
+            selectFileCmd = new RelayCommand(selectFileMethod, CanExecuteCloseCommand);
         }
+
+        
 
 
 
@@ -41,10 +45,23 @@ namespace 测试最大化.ViewModels
             }
         }
 
+        // 选择文件，更新当前播放视频Source
+        private void selectFileMethod(object obj)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                mediaSource = new Uri(openFileDialog.FileName, UriKind.RelativeOrAbsolute);
+                // 手动自动播放，因为设置了LoadBehavior
+                startMediaEvent?.Invoke();  // Action有时候比方法好用，要不然调用自己的方法需要静态的
+            }
+        }
+
         private void startMethod(object obj) => startMediaEvent?.Invoke();
         private bool CanExecuteCloseCommand(object obj) => true;
         private void ExecuteCloseCommand(object obj) => Application.Current.Shutdown();
         private void pauseMethod(object obj) => pauseMediaEvent?.Invoke();
+
         #endregion
 
 
@@ -94,6 +111,17 @@ namespace 测试最大化.ViewModels
             }
         }
 
+        private Uri _mediaSource;
+        /// <summary>
+        /// 当前播放视频
+        /// </summary>
+        public Uri mediaSource
+        {
+            get { return _mediaSource; }
+            set { _mediaSource = value; OnPropertyChanged(nameof(mediaSource)); }
+        }
+
+
         #endregion
 
         #region Command
@@ -102,6 +130,7 @@ namespace 测试最大化.ViewModels
         public ICommand pauseCommand { get; }
         public ICommand startCommand { get; }
         public ICommand popMediaIsOpenCmd { get; }
+        public ICommand selectFileCmd {  get; }
         #endregion
 
 
@@ -110,6 +139,7 @@ namespace 测试最大化.ViewModels
         // 停止播放事件
         public event Action pauseMediaEvent;
         public event Action startMediaEvent;
+        public event Action<Uri> mediaSourceEvent;
         #endregion
 
 

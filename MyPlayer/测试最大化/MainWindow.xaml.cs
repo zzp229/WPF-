@@ -108,9 +108,10 @@ namespace 测试最大化
         // 往播放器中拖拽视频处理
         private void Window_Drop(object sender, DragEventArgs e)
         {
+            // 可以将文件集合抽离到ViewModel中处理（现在先抽离Source）
             if (((DataObject)e.Data).GetFileDropList()[0] is string filename)
             {
-                myMediaElement.Source = new Uri(filename, UriKind.Relative);
+                viewModel.mediaSource = new Uri(filename, UriKind.Relative);    // 直接更新ViewModel的Source绑定，方便后面更新资源
                 myMediaElement.LoadedBehavior = MediaState.Manual;
                 myMediaElement.UnloadedBehavior = MediaState.Manual;
                 myMediaElement.Play();

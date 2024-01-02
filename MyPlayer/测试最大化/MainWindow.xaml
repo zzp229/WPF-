@@ -43,19 +43,20 @@
                 <Button Content="媒体" Command="{Binding popMediaIsOpenCmd}" Name="btnMedia"  Style="{StaticResource btnRightCornerStyle}" Visibility="{Binding BtnVisiable}"/>
                 <Popup Name="popMedia" IsOpen="{Binding popMediaIsOpen}" PlacementTarget="{Binding ElementName=btnMedia}" StaysOpen="False">
                     <StackPanel>
-                        <Button Content="选择文件" Width="100" Height="20" />
+                        <Button Content="选择文件" Command="{Binding selectFileCmd}" Width="100" Height="20" />
                         <Button Content="选择文件夹" Width="100" Height="20"/>
                     </StackPanel>
                 </Popup>
-                <Button Content="播放" Style="{StaticResource btnRightCornerStyle}" Visibility="{Binding BtnVisiable}"   Click="a_Click"/>
+                <Button Content="播放" Style="{StaticResource btnRightCornerStyle}" Visibility="{Binding BtnVisiable}"/>
                 <Button Content="音频" Command="{Binding closeCommand}" Style="{StaticResource btnRightCornerStyle}" Visibility="{Binding BtnVisiable}"/>
             </WrapPanel>
         </Grid>
 
         <!--视频播放区域-->
         <Border Grid.Row="1" x:Name="myBorder" Background="AntiqueWhite" Padding="0" MouseLeftButtonDown="NoDrag">
-            <MediaElement Name="myMediaElement" Source="your_media_source_here"
+            <MediaElement Name="myMediaElement" Source="{Binding mediaSource}"
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                  LoadedBehavior="Manual" UnloadedBehavior="Manual"
                   Margin="0"/>
         </Border>
 

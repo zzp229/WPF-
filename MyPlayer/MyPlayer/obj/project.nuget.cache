@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hfF5QcfwzixhOi+1sF4WljXVCKulLDip555MTT8bwkuVe0YHP5jcO9mpS0mRQ+/cNyYc/qoMJHGAh1sT8n+BzA==",
+  "dgSpecHash": "SZj823F/H2PQw+cZSV+Gdnr583LQqWXWUWKm/gyTahZALaT0kc8KrsEblhJTCVjEqMowURTw6nFdCH50RTrEUQ==",
   "success": true,
-  "projectFilePath": "D:\\desktop\\tmpgit\\好项目\\WPF-\\MyPlayer\\MyPlayer\\MyPlayer.csproj",
+  "projectFilePath": "D:\\desktop\\tmpgit\\好项目\\WPF-\\MyPlayer\\MyPlayer\\Version1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\13556\\.nuget\\packages\\commonservicelocator\\2.0.2\\commonservicelocator.2.0.2.nupkg.sha512",
     "C:\\Users\\13556\\.nuget\\packages\\libuv\\1.9.1\\libuv.1.9.1.nupkg.sha512",

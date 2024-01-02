@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\desktop\\tmpgit\\好项目\\WPF-\\MyPlayer\\测试最大化\\测试最大化.csproj",
-      "projectName": "测试最大化",
-      "projectPath": "D:\\desktop\\tmpgit\\好项目\\WPF-\\MyPlayer\\测试最大化\\测试最大化.csproj",
+      "projectUniqueName": "D:\\desktop\\tmpgit\\好项目\\WPF-\\MyPlayer\\测试最大化\\CustomPlayer.csproj",
+      "projectName": "CustomPlayer",
+      "projectPath": "D:\\desktop\\tmpgit\\好项目\\WPF-\\MyPlayer\\测试最大化\\CustomPlayer.csproj",
       "packagesPath": "C:\\Users\\13556\\.nuget\\packages\\",
       "outputPath": "D:\\desktop\\tmpgit\\好项目\\WPF-\\MyPlayer\\测试最大化\\obj\\",
       "projectStyle": "PackageReference",
