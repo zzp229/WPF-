@@ -15,6 +15,17 @@
     <Window.Resources>
         <Style x:Key="btnRightCornerStyle" TargetType="Button">
             <Setter Property="Margin" Value="5 1"></Setter>
+
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Gray"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </Window.Resources>
 
@@ -37,9 +48,20 @@
                 <RowDefinition Height="50*"/>
             </Grid.RowDefinitions>
             <WrapPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Content="测试"  Style="{StaticResource btnRightCornerStyle}" Visibility="{Binding BtnVisiable}" Click="b_Click"/>
-                <Button Content="最大" Style="{StaticResource btnRightCornerStyle}" Visibility="{Binding BtnVisiable}" Click="a_Click"/>
-                <Button Content="关闭" Command="{Binding closeCommand}" Style="{StaticResource btnRightCornerStyle}" Visibility="{Binding BtnVisiable}"/>
+                <Button Content="最小化" Name="btn_Smalllest"  Style="{StaticResource btnRightCornerStyle}" Visibility="{Binding BtnVisiable}" Click="b_Click"/>
+                <Button Content="最大" Name="btn_NormalAndMaximum" Style="{StaticResource btnRightCornerStyle}" Visibility="{Binding BtnVisiable}" Click="a_Click"/>
+                <Button Content="关闭" Name="btn_Close" Command="{Binding closeCommand}" Style="{StaticResource btnRightCornerStyle}" Visibility="{Binding BtnVisiable}">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Grid>
+                                <Viewbox>
+                                    <Path Data="M150 0 L75 200 L225 200 Z" Fill="Brown" />
+                                </Viewbox>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
             </WrapPanel>
             <!--第二行-->
             <WrapPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">

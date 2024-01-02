@@ -96,7 +96,17 @@ namespace 测试最大化
 
         private void a_Click(object sender, RoutedEventArgs e)
         {
-            this.WindowState = System.Windows.WindowState.Maximized;
+            if (WindowState == WindowState.Normal)
+            {
+                this.WindowState = System.Windows.WindowState.Maximized;
+                this.btn_NormalAndMaximum.Content = "正常";
+
+            } else
+            {
+                this.WindowState = WindowState.Normal;
+                this.btn_NormalAndMaximum.Content = "最大";
+            }
+            
         }
 
 
